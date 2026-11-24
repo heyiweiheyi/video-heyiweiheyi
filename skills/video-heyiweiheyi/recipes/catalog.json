@@ -1,0 +1,47 @@
+{
+  "schema_version": "1.0",
+  "skill_name": "video-heyiweiheyi",
+  "fallback_option": "自主设计（不套用固定公式）",
+  "recipes": [
+    {
+      "id": "memory-flashback",
+      "display_name": "回忆快闪",
+      "suggested_section": "",
+      "summary": "双轨半步交错回忆走马灯：单张图片 0.3s、不透明度三关键帧（0%→100%→0%）+ 动感缩小入场动效，主轨与画中画错位 0.15s 叠化串联，无黑帧断层地高速闪回多张记忆画面。",
+      "supported_aspects": ["16:9", "9:16", "1:1"],
+      "duration_range_sec": [2.0, 8.0],
+      "audio_sync": "beat",
+      "engine": "python-pil-ffmpeg",
+      "fallback_engine": "ffmpeg",
+      "required_inputs": [
+        {
+          "key": "images",
+          "label": "回忆快闪图片组（多张照片/画面）",
+          "type": "image_list",
+          "required": true,
+          "allow_ai_generate": true,
+          "description": "必填：用于回忆快闪的多张图片或剧照（建议 8–40 张；按默认 0.3s 单图 / 0.15s 半步交错，20 张约 3.15s，40 张约 6.15s）。用户必须明确提供图片路径，或授权联网检索 / 按主题批量生成。"
+        },
+        {
+          "key": "bgm",
+          "label": "配套背景音乐（BGM）",
+          "type": "audio_bgm",
+          "required": false,
+          "allow_ai_generate": false,
+          "description": "可选：用于烘托回忆走马灯节奏的背景音乐（推荐节奏明快或抒情推进曲目；未提供时输出带标准静音轨的纯净画质片段以便总装混音）"
+        },
+        {
+          "key": "clip_duration",
+          "label": "单图停留时长（默认 0.3 秒）",
+          "type": "text",
+          "required": false,
+          "allow_ai_generate": true,
+          "description": "可选：默认 0.3s（半步交错 0.15s）；如需慢速抒情可改为 0.4s–0.6s，极速卡点可改为 0.24s"
+        }
+      ],
+      "recipe_doc": "recipes/memory-flashback/RECIPE.md",
+      "reference_doc": "recipes/memory-flashback/references/jianying-and-ffmpeg-manual.md",
+      "script": "recipes/memory-flashback/scripts/build_memory_flashback.py"
+    }
+  ]
+}

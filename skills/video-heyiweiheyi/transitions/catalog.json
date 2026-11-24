@@ -1,0 +1,58 @@
+{
+  "schema_version": "1.0",
+  "skill_name": "video-heyiweiheyi",
+  "fallback_option": "自主搭配（由 AI 按节奏决定硬切或基础衔接）",
+  "transitions": [
+    {
+      "id": "fade-in-out",
+      "display_name": "逐渐显现/消失",
+      "suggested_position": "建议出入场",
+      "summary": "单轨不透明度关键帧淡入（0%→100%）与淡出（100%→0%），用于黑场柔和开启片头或优雅收束片尾。",
+      "supported_aspects": ["16:9", "9:16", "1:1"],
+      "default_duration_sec": 1.5,
+      "engine": "ffmpeg",
+      "fallback_engine": "python-pil-ffmpeg",
+      "required_inputs": [],
+      "transition_doc": "transitions/fade-in-out/TRANSITION.md",
+      "reference_doc": "transitions/fade-in-out/references/jianying-and-ffmpeg-manual.md",
+      "script": "transitions/fade-in-out/scripts/apply_fade_in_out.py"
+    },
+    {
+      "id": "seamless-cross-dissolve",
+      "display_name": "无缝衔接转场",
+      "suggested_position": "建议镜头间",
+      "summary": "两段视频画中画叠轨重叠，上层片段不透明度由 0%→100% 平滑交叉叠化（Cross-Dissolve），自然过渡两段镜头。",
+      "supported_aspects": ["16:9", "9:16", "1:1"],
+      "default_duration_sec": 1.2,
+      "engine": "ffmpeg",
+      "fallback_engine": "python-pil-ffmpeg",
+      "required_inputs": [],
+      "transition_doc": "transitions/seamless-cross-dissolve/TRANSITION.md",
+      "reference_doc": "transitions/seamless-cross-dissolve/references/jianying-and-ffmpeg-manual.md",
+      "script": "transitions/seamless-cross-dissolve/scripts/apply_seamless_dissolve.py"
+    },
+    {
+      "id": "ghost-double-exposure",
+      "display_name": "电影感若隐若现",
+      "suggested_position": "",
+      "summary": "画中画叠轨三关键帧（0%→50%→0%）双重曝光浮影：在主画面上缓缓浮现第二段半透明画面并柔和消散，营造强烈电影氛围与记忆重叠感。",
+      "supported_aspects": ["16:9", "9:16", "1:1"],
+      "default_duration_sec": 3.0,
+      "engine": "ffmpeg",
+      "fallback_engine": "python-pil-ffmpeg",
+      "required_inputs": [
+        {
+          "key": "overlay_media",
+          "label": "浮影叠层画面（可选独立素材）",
+          "type": "video_or_image",
+          "required": false,
+          "allow_ai_generate": true,
+          "description": "可选：若希望用独立画面做半透明浮影可单独提供；未单独提供时默认复用相邻段落画面作为双重曝光浮影。"
+        }
+      ],
+      "transition_doc": "transitions/ghost-double-exposure/TRANSITION.md",
+      "reference_doc": "transitions/ghost-double-exposure/references/jianying-and-ffmpeg-manual.md",
+      "script": "transitions/ghost-double-exposure/scripts/apply_ghost_double_exposure.py"
+    }
+  ]
+}
