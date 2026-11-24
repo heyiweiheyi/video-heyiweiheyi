@@ -42,6 +42,54 @@
       "recipe_doc": "recipes/memory-flashback/RECIPE.md",
       "reference_doc": "recipes/memory-flashback/references/jianying-and-ffmpeg-manual.md",
       "script": "recipes/memory-flashback/scripts/build_memory_flashback.py"
+    },
+    {
+      "id": "split-screen-beat-flash",
+      "display_name": "六分屏闪白卡点",
+      "suggested_section": "",
+      "summary": "6 等分竖条百叶窗分屏卡点：将画面均分为 6 条带微缝竖栏，随音乐节拍点逐格点亮首图并波浪式逐格切换后续图片，每格入场前 3 帧与切换前 3 帧触发亮度+对比度拉满闪白脉冲。",
+      "supported_aspects": ["16:9", "9:16", "1:1"],
+      "duration_range_sec": [4.0, 14.0],
+      "audio_sync": "beat",
+      "engine": "python-pil-ffmpeg",
+      "fallback_engine": "ffmpeg",
+      "required_inputs": [
+        {
+          "key": "images",
+          "label": "分屏卡点图片组（多张风景/人物/主题图）",
+          "type": "image_list",
+          "required": true,
+          "allow_ai_generate": true,
+          "description": "必填：用于 6 分屏逐格卡点切换的多张高清图片（推荐 4–8 张，如天空、旅行、成长或产品系列图）。用户须明确提供图片路径，或授权联网检索 / 按主题批量生成。"
+        },
+        {
+          "key": "bgm",
+          "label": "卡点节奏背景音乐（BGM）",
+          "type": "audio_bgm",
+          "required": false,
+          "allow_ai_generate": false,
+          "description": "可选：强烈推荐提供鼓点/节拍清晰的高质感 BGM（脚本支持自动波峰检测对齐节拍；未提供时按默认 BPM / 固定节拍间隔均匀卡点）"
+        },
+        {
+          "key": "num_strips",
+          "label": "分屏等分栏数（默认 6 等分）",
+          "type": "text",
+          "required": false,
+          "allow_ai_generate": true,
+          "description": "可选：默认 6 等分竖条；也可按画面构图改为 4 / 5 / 8 等分"
+        },
+        {
+          "key": "reveal_order",
+          "label": "逐格点亮/切换顺序（默认中间向外）",
+          "type": "text",
+          "required": false,
+          "allow_ai_generate": true,
+          "description": "可选：center-out（从中间向两侧绽放，默认）/ left-to-right（从左到右扫屏）/ right-to-left / alternate / random"
+        }
+      ],
+      "recipe_doc": "recipes/split-screen-beat-flash/RECIPE.md",
+      "reference_doc": "recipes/split-screen-beat-flash/references/jianying-and-ffmpeg-manual.md",
+      "script": "recipes/split-screen-beat-flash/scripts/build_split_screen_beat_flash.py"
     }
   ]
 }

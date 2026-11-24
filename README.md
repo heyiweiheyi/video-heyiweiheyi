@@ -30,6 +30,7 @@
 | ID | 选项展示名 | 建议位置 | 典型时长 | 核心说明 |
 | :--- | :--- | :---: | :---: | :--- |
 | `memory-flashback` | `回忆快闪` | — | `2–8s` | 双轨半步（`0.15s`）交错叠化走马灯：单图 `0.3s` + 不透明度三关键帧 `0%→100%→0%` + 动感缩小与轻度缩放模糊，需提供多张回忆图片 |
+| `split-screen-beat-flash` | `六分屏闪白卡点` | — | `4–14s` | 6 等分竖条百叶窗分屏卡点：随节拍逐格点亮首图并波浪式逐格切换多张图片，每格片头/片尾 3 帧亮度+对比度拉满闪白脉冲（支持自动 BGM 波峰卡点） |
 
 ### 独立转场效果（`transitions/catalog.json`）
 
@@ -52,10 +53,14 @@ video-heyiweiheyi/
 │       ├── SKILL.md                                       # 轻量总控：第0步规格 + 四步向导(含转场选择) + 素材/离线降级 + 分镜确认
 │       ├── recipes/                                       # 显性可选 ①：段落/画面公式化模板库
 │       │   ├── catalog.json
-│       │   └── memory-flashback/
+│       │   ├── memory-flashback/
+│       │   │   ├── RECIPE.md
+│       │   │   ├── references/jianying-and-ffmpeg-manual.md
+│       │   │   └── scripts/build_memory_flashback.py
+│       │   └── split-screen-beat-flash/
 │       │       ├── RECIPE.md
 │       │       ├── references/jianying-and-ffmpeg-manual.md
-│       │       └── scripts/build_memory_flashback.py
+│       │       └── scripts/build_split_screen_beat_flash.py
 │       ├── transitions/                                   # 显性可选 ②：独立转场效果库
 │       │   ├── catalog.json
 │       │   ├── fade-in-out/
